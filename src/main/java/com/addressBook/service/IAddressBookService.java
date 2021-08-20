@@ -7,10 +7,17 @@ import com.addressBook.entity.AddressBookEntity;
 
 public interface IAddressBookService {
 
-	AddressBookEntity saveAddressBook(AddressBookDTO dto);
+	public AddressBookEntity saveAddressBook(AddressBookDTO dto);
 
-	List<AddressBookEntity> getAddressBook();
+	public List<AddressBookEntity> getAddressBook();
 
+	public AddressBookEntity getAddressBookById(int id);
+
+	public AddressBookEntity updateAddressBookByID(int id, AddressBookDTO dto);
+
+	public AddressBookEntity deleteAddressbookByID(int id);
+
+	
 	
 
 }
