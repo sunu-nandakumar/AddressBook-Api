@@ -2,6 +2,7 @@ package com.addressBook.service;
 
 import java.util.List;
 
+import com.addressBook.Error.AddressBookNotFound;
 import com.addressBook.dto.AddressBookDTO;
 import com.addressBook.entity.AddressBookEntity;
 
@@ -11,7 +12,7 @@ public interface IAddressBookService {
 
 	public List<AddressBookEntity> getAddressBook();
 
-	public AddressBookEntity getAddressBookById(int id);
+	public AddressBookEntity getAddressBookById(int id) throws AddressBookNotFound;
 
 	public AddressBookEntity updateAddressBookByID(int id, AddressBookDTO dto);
 

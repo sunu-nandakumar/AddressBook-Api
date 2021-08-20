@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.addressBook.Error.AddressBookNotFound;
 import com.addressBook.dto.AddressBookDTO;
 import com.addressBook.dto.ResponseDTO;
 import com.addressBook.entity.AddressBookEntity;
@@ -34,8 +35,8 @@ public class AddressBookController {
 		ResponseDTO responseDTO = new ResponseDTO(" Retrived all data from address book ", entityList);
 		return new ResponseEntity<>(responseDTO,HttpStatus.OK);
 	}
-	@GetMapping("/getByID/{id}")
-	public ResponseEntity<ResponseDTO> getAddressBookByID(@PathVariable("id") int id){
+	@GetMapping("/getByID/{id}") 
+	public ResponseEntity<ResponseDTO> getAddressBookByID(@PathVariable("id") int id)throws AddressBookNotFound{
 		AddressBookEntity entity = (AddressBookEntity)service.getAddressBookById(id);
 		ResponseDTO responseDTO = new ResponseDTO(" Retrived the data from address book ", entity);
 		return new ResponseEntity<>(responseDTO,HttpStatus.OK);

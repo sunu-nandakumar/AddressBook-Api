@@ -2,10 +2,12 @@ package com.addressBook.service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.addressBook.Error.AddressBookNotFound;
 import com.addressBook.dto.AddressBookDTO;
 import com.addressBook.entity.AddressBookEntity;
 import com.addressBook.repository.AddressBookRepository;
@@ -28,9 +30,15 @@ public class AddressBookServiceImplements implements IAddressBookService {
 	}
 
 	@Override
-	public AddressBookEntity getAddressBookById(int id) {
+	public AddressBookEntity getAddressBookById(int id) throws AddressBookNotFound {
 		
-		return repository.findById(id).get();
+		Optional<AddressBookEntity> entity = repository.findById(id);
+		
+		
+		if(!entity.isPresent()) {
+			throw new AddressBookNotFound("Address book not found in the DB");
+		}
+		return entity.get();
 	}
 
 	@Override
